@@ -18,7 +18,7 @@ class CreateBandsTable extends Migration
             $table->string('name');
             $table->date('start_date');
             $table->string('website');
-            $table->integer('still_active',1);
+            $table->integer('still_active');
             $table->timestamps();
         });
     }
