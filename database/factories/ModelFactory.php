@@ -11,13 +11,27 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
+
+$factory->define(App\Band::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'start_date' => $faker->date,
+        'website' => $faker->name,
+        'still_active' => 1,
+    ];
+});
+
+$factory->define(App\Album::class, function (Faker\Generator $faker) {
+
+    return [
+    	'band_id' => $faker->numberBetween(1,50),
+        'name' => $faker->name,
+        'recorded_date' => $faker->date,
+        'release_date' => $faker->date,
+        'number_of_tracks' => $faker->numberBetween(5,14),
+        'label' => $faker->name,
+        'producer' => $faker->name,
+        'genre' => $faker->name,
     ];
 });

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Band;
+use App\Album;
 
 
 class PageController extends Controller
@@ -15,7 +16,10 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function bands(){
-        return view('bands');
+        $bands = Band::all();
+
+        return view('bands')
+            ->with('bands',$bands);
     }
 
     /**
@@ -24,7 +28,10 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function albums(){
-        return view('albums');
+        $albums = Album::all();
+        
+        return view('albums')
+            ->with('albums',$albums);
     }
 
 }
