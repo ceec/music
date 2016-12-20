@@ -77,12 +77,22 @@ class BandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request){
-        $band_id = $request->input('band_id');
+    public function delete($band_id){
+        //clean band_id
+        if (intval($band_id) < 1) {
+            return redirect('/');  
+        }
 
-        //
+        //delete band and all albums tied to the band
+        $b = Band::find($band_id);
+    
+        //delete albums
+        $b->albums()->delete();
 
-         echo json_encode(array('test'=>$band_id));
+        //delete band
+        $b->delete();
+
+        return redirect('/');   
 
     }
 

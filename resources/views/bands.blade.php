@@ -32,7 +32,12 @@
         						<button class="btn btn-primary">Edit</button>
         					</a>
 	        			</td>
-	        			<td><button class="btn btn-danger delete-band" data-id="{{$band->id}}">Delete</button></td>
+	        			<td>
+	        				 <a href="{{ url('/delete/band/'.$band->id) }}">
+        						<button class="btn btn-danger">Delete</button>
+        					</a>
+	        				
+	        			</td>
 	        		</tr>
 	        	@endforeach    
 	        	</tbody>    		
@@ -48,33 +53,6 @@
 $(function(){
 	//add tablesorter
 	$("#all-bands").tablesorter();
-
-	//ajax setup
-	$.ajaxSetup({
-	        headers: {
-	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-	        }
-	})
-
-	//removing band
-	$('body').on('click','.delete-band',function() {
-	    var bandID = jQuery(this).data('id');
-
-	    $.ajax({
-	        type: "POST",
-	        url: '/delete/band',
-	        data: {band_id:bandID},
-	        dataType: 'json',
-	        success: function (data) {
-	        	//reload the page
-	        	console.log(data);
-	                 
-	        },
-	        error: function (data) {
-	            console.log('Error:', data);
-	        }
-	    });
-	});
 });
 </script>
 @endsection

@@ -21,13 +21,14 @@ Route::get('/create/band', 'PageController@bandCreate');
 Route::get('/edit/album/{album_id}', 'PageController@albumEdit');
 Route::get('/edit/band/{band_id}', 'PageController@bandEdit');
 
+Route::get('/delete/album/{album_id}', 'AlbumController@delete');
+Route::get('/delete/band/{band_id}', 'BandController@delete');
+
 
 //bands
 Route::post('/band/create', 'BandController@create');
 Route::post('/band/edit', 'BandController@edit');
-Route::post('/band/delete', 'BandController@delete');
 
 //albums
 Route::post('/album/create', 'AlbumController@create');
 Route::post('/album/edit', 'AlbumController@edit');
-Route::post('/album/delete', 'AlbumController@delete');
