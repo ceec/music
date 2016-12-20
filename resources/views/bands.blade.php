@@ -27,7 +27,11 @@
 	        					No
 	        				@endif
 	        			</td>
-	        			<td><button class="btn btn-primary">Edit</button></td>
+	        			<td> 
+	        				<a href="{{ url('/edit/band/'.$band->id) }}">
+        						<button class="btn btn-primary">Edit</button>
+        					</a>
+	        			</td>
 	        			<td><button class="btn btn-danger delete-band" data-id="{{$band->id}}">Delete</button></td>
 	        		</tr>
 	        	@endforeach    

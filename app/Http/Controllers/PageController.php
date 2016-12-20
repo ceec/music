@@ -57,7 +57,11 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function bandEdit($band_id){
-        
+        //clean band_id
+        if (intval($band_id) < 1) {
+            return redirect('/');  
+        }
+
         $create = false;
         $band = Band::find($band_id);
 
@@ -91,6 +95,11 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function albumEdit($album_id){
+        //clean album_id
+        if (intval($album_id) < 1) {
+            return redirect('/albums');  
+        }
+
         //list of all bands
         $bands = Band::pluck('name','id');
 

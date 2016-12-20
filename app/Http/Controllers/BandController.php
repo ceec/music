@@ -41,6 +41,36 @@ class BandController extends Controller
 
     }
 
+    /**
+     * Edit band
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request){
+        
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $start_date = $request->input('start_date');
+
+        //check for empty dates
+        if ($start_date == '') {
+            $start_date = null;
+        }
+
+
+        $b = Band::find($request->input('band_id'));
+        $b->name = $request->input('name');
+        $b->start_date = $start_date;
+        $b->website = $request->input('website');
+        $b->still_active = $request->input('still_active');
+        $b->save();
+
+
+         return redirect('/');   
+
+    }
 
     /**
      * Delete band
