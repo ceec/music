@@ -16,9 +16,9 @@ class CreateBandsTable extends Migration
         Schema::create('bands', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->date('start_date');
+            $table->date('start_date')->nullable();
             $table->string('website');
-            $table->integer('still_active');
+            $table->integer('still_active')->default(0);
             $table->timestamps();
         });
     }
