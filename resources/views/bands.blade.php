@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-        <h1>All Bands</h1>
+        <h1>All Bands <a class="btn btn-success pull-right" href="{{ url('/create/band') }}">Create New</a></h1>
         	<table id="all-bands" class="table">
         		<thead>
         			<th>Band</th>
@@ -28,7 +28,7 @@
 	        				@endif
 	        			</td>
 	        			<td><button class="btn btn-primary">Edit</button></td>
-	        			<td><button class="btn btn-danger">Delete</button></td>
+	        			<td><button class="btn btn-danger delete-band" data-id="{{$band->id}}">Delete</button></td>
 	        		</tr>
 	        	@endforeach    
 	        	</tbody>    		
@@ -42,7 +42,35 @@
 <script type="text/javascript" src="/js/jquery.tablesorter.js"></script>
 <script>
 $(function(){
-  $("#all-bands").tablesorter();
+	//add tablesorter
+	$("#all-bands").tablesorter();
+
+	//ajax setup
+	$.ajaxSetup({
+	        headers: {
+	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	        }
+	})
+
+	//removing band
+	$('body').on('click','.delete-band',function() {
+	    var bandID = jQuery(this).data('id');
+
+	    $.ajax({
+	        type: "POST",
+	        url: '/delete/band',
+	        data: {band_id:bandID},
+	        dataType: 'json',
+	        success: function (data) {
+	        	//reload the page
+	        	console.log(data);
+	                 
+	        },
+	        error: function (data) {
+	            console.log('Error:', data);
+	        }
+	    });
+	});
 });
 </script>
 @endsection

@@ -34,4 +34,26 @@ class PageController extends Controller
             ->with('albums',$albums);
     }
 
+
+    /**
+     * Create a band
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function bandCreate(){
+        
+        return view('bandCreate');
+    }
+
+
+    /**
+     * Create a album
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function albumCreate(){
+        
+        return view('albumCreate');
+    }
+
 }
