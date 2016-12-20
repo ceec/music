@@ -45,7 +45,18 @@
             	@else
             		{!! Form::submit('Update',['class'=>'btn btn-success']) !!}
             	@endif	
-            {!! Form::close() !!}      	
+            {!! Form::close() !!}   
+
+
+            @if (!$create)
+            	<h2>Albums</h2>
+            	@foreach($band->albums as $album)
+            		<a href="{{ url('/edit/album/'.$album->id) }}">{{$album->name}}</a><br>
+            	@endforeach
+
+
+            @endif
+
         </div>
     </div>
 </div>

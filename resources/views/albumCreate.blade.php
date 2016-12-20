@@ -9,6 +9,7 @@
 	        	<h1>Create Album</h1>
 	        @else
 	        	<h1>Editing Album: {{$album->name}}</h1>
+	        	<h2>Band: {{$album->band->name}}</h2>
 	        @endif
       
 			@if (count($errors) > 0)

@@ -23,7 +23,7 @@
     		<tbody>
         	@foreach($albums as $album)
         		<tr>
-        			<td>{{$album->band_id}}</td>
+        			<td>{{$album->band['name']}}</td>
         			<td>{{$album->name}}</td>
         			<td>{{$album->recorded_date}}</td>
         			<td>{{$album->release_date}}</td>
