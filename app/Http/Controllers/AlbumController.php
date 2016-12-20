@@ -41,16 +41,16 @@ class AlbumController extends Controller
         }
 
 
-        $b = new Album;
-        $b->band_id = $request->input('band_id');
-        $b->name = $request->input('name');
-        $b->recorded_date = $recorded_date;
-        $b->release_date = $release_date;
-        $b->number_of_tracks = $number_of_tracks;
-        $b->label = $request->input('label');
-        $b->producer = $request->input('producer');
-        $b->genre = $request->input('genre');                        
-        $b->save();
+        $a = new Album;
+        $a->band_id = $request->input('band_id');
+        $a->name = $request->input('name');
+        $a->recorded_date = $recorded_date;
+        $a->release_date = $release_date;
+        $a->number_of_tracks = $number_of_tracks;
+        $a->label = $request->input('label');
+        $a->producer = $request->input('producer');
+        $a->genre = $request->input('genre');                        
+        $a->save();
 
 
          return redirect('/albums');   
@@ -89,16 +89,16 @@ class AlbumController extends Controller
         }
 
 
-        $b = Album::find($request->input('album_id'));
-        $b->band_id = $request->input('band_id');
-        $b->name = $request->input('name');
-        $b->recorded_date = $recorded_date;
-        $b->release_date = $release_date;
-        $b->number_of_tracks = $number_of_tracks;
-        $b->label = $request->input('label');
-        $b->producer = $request->input('producer');
-        $b->genre = $request->input('genre');                        
-        $b->save();
+        $a = Album::find($request->input('album_id'));
+        $a->band_id = $request->input('band_id');
+        $a->name = $request->input('name');
+        $a->recorded_date = $recorded_date;
+        $a->release_date = $release_date;
+        $a->number_of_tracks = $number_of_tracks;
+        $a->label = $request->input('label');
+        $a->producer = $request->input('producer');
+        $a->genre = $request->input('genre');                        
+        $a->save();
 
 
          return redirect('/albums');   
@@ -110,19 +110,18 @@ class AlbumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request){
-        $band_id = $request->input('band_id');
+    public function delete($album_id){
+        //clean album_id
+        if (intval($album_id) < 1) {
+            return redirect('/albums');  
+        }
 
-        //
+        //delete
+        $a = Album::find($album_id);
+        $a->delete();
 
-         echo json_encode(array('test'=>$band_id));
+         return redirect('/albums');  
 
     }
-
-
-
-
-
-
 
 }

@@ -36,7 +36,6 @@
 	        				 <a href="{{ url('/delete/band/'.$band->id) }}">
         						<button class="btn btn-danger">Delete</button>
         					</a>
-	        				
 	        			</td>
 	        		</tr>
 	        	@endforeach    

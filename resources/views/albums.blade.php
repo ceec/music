@@ -36,7 +36,11 @@
         					<button class="btn btn-primary">Edit</button>
         				</a>
         			</td>
-        			<td><button class="btn btn-danger delete-album" data-id="{{$album->id}}">Delete</button></td>
+        			<td>
+        				<a href="{{ url('/delete/album/'.$album->id) }}">
+        					<button class="btn btn-danger">Delete</button>
+        				</a>
+        			</td>
         		</tr>
         	@endforeach    
         	</tbody>    		
@@ -44,4 +48,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="/js/jquery.tablesorter.js"></script>
+<script>
+$(function(){
+	//add tablesorter
+	$("#all-albums").tablesorter();
+});
+</script>
 @endsection
