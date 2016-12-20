@@ -10,7 +10,7 @@ class AlbumController extends Controller
 {
 
     /**
-     * Create band
+     * Create Album
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +31,6 @@ class AlbumController extends Controller
         if ($recorded_date == '') {
             $recorded_date = null;
         }
-
 
         if ($release_date == '') {
             $release_date = null;
@@ -55,7 +54,54 @@ class AlbumController extends Controller
 
 
          return redirect('/albums');   
+    }
 
+
+    /**
+     * Edit Album
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request){
+        
+        $this->validate($request, [
+            'band_id' => 'required',
+            'name' => 'required'
+
+        ]);
+
+
+        $recorded_date = $request->input('recorded_date');
+        $release_date = $request->input('release_date');
+        $number_of_tracks = $request->input('number_of_tracks');
+
+        //check for empty dates
+        if ($recorded_date == '') {
+            $recorded_date = null;
+        }
+
+        if ($release_date == '') {
+            $release_date = null;
+        }
+
+        if ($number_of_tracks == '') {
+            $number_of_tracks = 0;
+        }
+
+
+        $b = Album::find($request->input('album_id'));
+        $b->band_id = $request->input('band_id');
+        $b->name = $request->input('name');
+        $b->recorded_date = $recorded_date;
+        $b->release_date = $release_date;
+        $b->number_of_tracks = $number_of_tracks;
+        $b->label = $request->input('label');
+        $b->producer = $request->input('producer');
+        $b->genre = $request->input('genre');                        
+        $b->save();
+
+
+         return redirect('/albums');   
     }
 
 

@@ -19,16 +19,15 @@
 			    </div>
 			@endif
 
-			<?php
-				print '<pre>';
-				print_r($bands);
-				print '</pre>';
-			?>
-
-        	{!! Form::open(['url' => '/album/create']) !!}     
+			@if ($create)
+        		{!! Form::open(['url' => '/album/create']) !!}     
+        	@else
+        		{!! Form::open(['url' => '/album/edit']) !!}  
+        		{!! Form::hidden('album_id',$album->id) !!}
+        	@endif
 				<div class="form-group">
-					<label for="name">Band</label>
-					{!! Form::select('band_id',$bands,$album->band_id,['class'=>'form-control','id'=>'name']) !!}
+					<label for="band">Band</label>
+					{!! Form::select('band_id',$bands,$album->band_id,['class'=>'form-control','id'=>'band']) !!}
 
 				</div>            	
 				<div class="form-group">
@@ -58,8 +57,12 @@
 				<div class="form-group">
 					<label for="genre">Genre</label>
 					{!! Form::text('genre',$album->genre,['class'=>'form-control','id'=>'genre']) !!}
-				</div>  								  			                                                               
-            	{!! Form::submit('Create',['class'=>'btn btn-success']) !!}
+				</div>  								
+				@if ($create)				 			                                                               
+            		{!! Form::submit('Create',['class'=>'btn btn-success']) !!}
+            	@else
+            		{!! Form::submit('Update',['class'=>'btn btn-success']) !!}
+            	@endif	
             {!! Form::close() !!}      	
         </div>
     </div>
