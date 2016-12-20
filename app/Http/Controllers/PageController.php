@@ -42,7 +42,12 @@ class PageController extends Controller
      */
     public function bandCreate(){
         
-        return view('bandCreate');
+        $create = true;
+        $band = new Band;
+
+        return view('bandCreate')
+            ->with('create',$create)
+            ->with('band',$band);
     }
 
 

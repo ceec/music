@@ -21,10 +21,17 @@ class BandController extends Controller
             'name' => 'required'
         ]);
 
-        
+        $start_date = $request->input('start_date');
+
+        //check for empty dates
+        if ($start_date == '') {
+            $start_date = null;
+        }
+
+
         $b = new Band;
         $b->name = $request->input('name');
-        $b->start_date = $request->input('start_date');
+        $b->start_date = $start_date;
         $b->website = $request->input('website');
         $b->still_active = $request->input('still_active');
         $b->save();

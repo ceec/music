@@ -5,14 +5,12 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
-        @if ($create) 
-        	<h1>Create Album</h1>
-        @else
-        	<h1>Editing Album: {{$album->name}}</h1>
-        @endif
-
-        
-
+	        @if ($create) 
+	        	<h1>Create Album</h1>
+	        @else
+	        	<h1>Editing Album: {{$album->name}}</h1>
+	        @endif
+      
 			@if (count($errors) > 0)
 			    <div class="alert alert-danger">
 			            @foreach ($errors->all() as $error)
@@ -20,6 +18,12 @@
 			            @endforeach
 			    </div>
 			@endif
+
+			<?php
+				print '<pre>';
+				print_r($bands);
+				print '</pre>';
+			?>
 
         	{!! Form::open(['url' => '/album/create']) !!}     
 				<div class="form-group">

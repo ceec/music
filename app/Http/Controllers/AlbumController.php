@@ -23,13 +23,31 @@ class AlbumController extends Controller
         ]);
 
 
+        $recorded_date = $request->input('recorded_date');
+        $release_date = $request->input('release_date');
+        $number_of_tracks = $request->input('number_of_tracks');
+
+        //check for empty dates
+        if ($recorded_date == '') {
+            $recorded_date = null;
+        }
+
+
+        if ($release_date == '') {
+            $release_date = null;
+        }
+
+        if ($number_of_tracks == '') {
+            $number_of_tracks = 0;
+        }
+
 
         $b = new Album;
         $b->band_id = $request->input('band_id');
         $b->name = $request->input('name');
-        $b->recorded_date = $request->input('recorded_date');
-        $b->release_date = $request->input('release_date');
-        $b->number_of_tracks = $request->input('number_of_tracks');
+        $b->recorded_date = $recorded_date;
+        $b->release_date = $release_date;
+        $b->number_of_tracks = $number_of_tracks;
         $b->label = $request->input('label');
         $b->producer = $request->input('producer');
         $b->genre = $request->input('genre');                        
