@@ -16,6 +16,14 @@ class AlbumController extends Controller
      */
     public function create(Request $request){
         
+        $this->validate($request, [
+            'band_id' => 'required',
+            'name' => 'required'
+
+        ]);
+
+
+
         $b = new Album;
         $b->band_id = $request->input('band_id');
         $b->name = $request->input('name');

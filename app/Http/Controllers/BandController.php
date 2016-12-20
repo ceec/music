@@ -17,6 +17,11 @@ class BandController extends Controller
      */
     public function create(Request $request){
         
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        
         $b = new Band;
         $b->name = $request->input('name');
         $b->start_date = $request->input('start_date');

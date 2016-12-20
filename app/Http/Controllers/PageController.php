@@ -52,8 +52,17 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function albumCreate(){
-        
-        return view('albumCreate');
+        //list of all bands
+
+        $bands = Band::pluck('name','id');
+        $create = true;
+        $album = new Album;
+
+
+        return view('albumCreate')
+            ->with('create',$create)
+            ->with('album',$album)
+            ->with('bands',$bands);
     }
 
 }
