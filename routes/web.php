@@ -14,6 +14,7 @@
 
 Route::get('/', 'PageController@bands');
 Route::get('/albums', 'PageController@albums');
+Route::post('/albums/filter', 'PageController@albumsFilter');
 
 Route::get('/create/album', 'PageController@albumCreate');
 Route::get('/create/band', 'PageController@bandCreate');

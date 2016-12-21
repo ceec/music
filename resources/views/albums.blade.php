@@ -5,8 +5,17 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
         <h1>All Albums <a class="btn btn-success pull-right" href="{{ url('/create/album') }}">Create New</a	></h1>
+        {!! Form::open(['url' => '/albums/filter']) !!}     
+        	<div class="form-group">
+				<label for="filter">Filter by Band</label>
+					{!! Form::select('band_id',$bands,'',['class'=>'form-control','id'=>'filter']) !!}
+			</div> 
+			{!! Form::submit('Filter',['class'=>'btn btn-success']) !!}
+			<a class="btn btn-success" href="{{ url('/albums') }}">All Albums</a>
+		{!! Form::close() !!}   
 
 
+       
     	<table id="all-albums" class="table">
     		<thead>
     			<th>Band</th>
@@ -31,16 +40,8 @@
         			<td>{{$album->label}}</td>        			        			        			
         			<td>{{$album->producer}}</td>
         			<td>{{$album->genre}}</td>        			        			
-        			<td>
-        				<a href="{{ url('/edit/album/'.$album->id) }}">
-        					<button class="btn btn-primary">Edit</button>
-        				</a>
-        			</td>
-        			<td>
-        				<a href="{{ url('/delete/album/'.$album->id) }}">
-        					<button class="btn btn-danger">Delete</button>
-        				</a>
-        			</td>
+        			<td><a class="btn btn-primary" href="{{ url('/edit/album/'.$album->id) }}">Edit</a></td>
+        			<td><a class="btn btn-danger" href="{{ url('/delete/album/'.$album->id) }}">Delete</a></td>
         		</tr>
         	@endforeach    
         	</tbody>    		

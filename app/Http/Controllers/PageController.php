@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Band;
 use App\Album;
 
@@ -30,10 +31,32 @@ class PageController extends Controller
     public function albums(){
         $albums = Album::all();
         
+        //list of all bands
+        $bands = Band::orderBy('name','ASC')->pluck('name','id');
+
         return view('albums')
+            ->with('bands',$bands)
             ->with('albums',$albums);
     }
 
+
+    /**
+     * Display all the albumns with filter
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function albumsFilter(Request $request){
+        $band_id = $request->input('band_id');
+
+        $albums = Album::where('band_id','=',$band_id)->get();
+        
+        //list of all bands
+        $bands = Band::orderBy('name','ASC')->pluck('name','id');
+
+        return view('albums')
+            ->with('bands',$bands)
+            ->with('albums',$albums);
+    }
 
     /**
      * Create a band
@@ -77,7 +100,7 @@ class PageController extends Controller
      */
     public function albumCreate(){
         //list of all bands
-        $bands = Band::pluck('name','id');
+        $bands = Band::orderBy('name','ASC')->pluck('name','id');
 
         $create = true;
         $album = new Album;
@@ -101,7 +124,7 @@ class PageController extends Controller
         }
 
         //list of all bands
-        $bands = Band::pluck('name','id');
+        $bands = Band::orderBy('name','ASC')->pluck('name','id');
 
         $create = false;
         $album = Album::find($album_id);
