@@ -27,16 +27,8 @@
 	        					No
 	        				@endif
 	        			</td>
-	        			<td> 
-	        				<a href="{{ url('/edit/band/'.$band->id) }}">
-        						<button class="btn btn-primary">Edit</button>
-        					</a>
-	        			</td>
-	        			<td>
-	        				 <a href="{{ url('/delete/band/'.$band->id) }}">
-        						<button class="btn btn-danger">Delete</button>
-        					</a>
-	        			</td>
+	        			<td><a class="btn btn-primary" href="{{ url('/edit/band/'.$band->id) }}">Edit</a></td>
+	        			<td><a class="btn btn-danger" href="{{ url('/delete/band/'.$band->id) }}">Delete</a></td>
 	        		</tr>
 	        	@endforeach    
 	        	</tbody>    		
